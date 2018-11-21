@@ -1,8 +1,8 @@
 # shops-backend
 Backend of an application that lists shops nearby !!
---> To implement this backend, I chose Spring boot and Api RestFul !! 
---> About the authentication, I will use Spring security !!
---> and for FrontEnd, I will make it by Angular 6 !! Also I'll use google distance matrix api to calculate distance between shops and users current location. 
+- To implement this backend, I chose Spring boot and Api RestFul !! 
+- About the authentication, I will use Spring security !!
+- and for FrontEnd, I will make it by Angular 6 !! Also I'll use google distance matrix api to calculate distance between shops and users current location. 
 
 Until this moment, I've made all the functionalities in backend except the authentication !!
 
