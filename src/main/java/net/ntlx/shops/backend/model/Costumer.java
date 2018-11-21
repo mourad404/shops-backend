@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -48,6 +49,7 @@ public class Costumer implements Serializable {
 	private String lastname;
 
 	@Column(name = "\"USERNAME\"")
+	@Email
 	private String username;
 
 	@Column(name = "\"PASSWORD\"")

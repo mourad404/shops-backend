@@ -6,4 +6,5 @@ import net.ntlx.shops.backend.model.Costumer;
 
 public interface CostumerRepository extends JpaRepository<Costumer, Long> {
 
+	public Costumer getByUsername(String username);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,16 +22,18 @@ public class CostumerController {
 	@Autowired
 	private CostumerBusiness costumerBusiness;
 
+	@Secured(value = { "ROLE_USER" })
 	@GetMapping("/costumers")
-	public List<Costumer> listCategories() {
+	public List<Costumer> listCostumers() {
 		return costumerBusiness.listCostumers();
 	}
 
-	@PostMapping("/costumers")
+	@PostMapping("/public/costumers")
 	public ResponseEntity<Costumer> addCostumer(@RequestBody Costumer c) {
 		return costumerBusiness.addCostumer(c);
 	}
 
+	@Secured(value = { "ROLE_USER" })
 	@GetMapping("/costumers/{idc}")
 	public Costumer searchCostumer(@PathVariable("idc") Long id) {
 		return costumerBusiness.searchCostumer(id);
@@ -39,6 +42,7 @@ public class CostumerController {
 	/**
 	 * BOOKMARK
 	 */
+	@Secured(value = { "ROLE_USER" })
 	@PutMapping("/costumers/{idc}/shops/{ids}")
 	public Costumer addOrDeleteBookmark(@PathVariable("idc") Long idc, @PathVariable("ids") Long ids) {
 		return costumerBusiness.addOrDeleteBookmark(idc, ids);
@@ -47,6 +51,7 @@ public class CostumerController {
 	/**
 	 * BOOKMARK
 	 */
+	@Secured(value = { "ROLE_USER" })
 	@GetMapping("/costumers/{idc}/shopsBM")
 	public List<Shop> listBookmarks(@PathVariable("idc") Long id) {
 		return costumerBusiness.listBookmarks(id);

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,14 +25,20 @@ public class CostumerBusinessImpl implements CostumerBusiness {
 	@Autowired
 	private ShopRepository shopRepository;
 
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 	@Override
 	public List<Costumer> listCostumers() {
 		return costumerRepository.findAll();
 	}
 
 	@Override
+	@Transactional
 	public ResponseEntity<Costumer> addCostumer(Costumer c) {
-
+		if (costumerRepository.getByUsername(c.getUsername()) != null)
+			throw new RuntimeException("Cet email est déjà utilisé !!");
+		c.setPassword(bCryptPasswordEncoder.encode(c.getPassword()));
 		final Costumer newCostumer = costumerRepository.save(c);
 		if (newCostumer == null) {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

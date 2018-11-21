@@ -53,10 +53,10 @@ public class Shop implements Serializable {
 	 * location and shops locations.
 	 */
 	@Column(name = "\"LONGITUDE\"")
-	private double longitude;
+	private String longitude;
 
 	@Column(name = "\"LATITUDE\"")
-	private double latitude;
+	private String latitude;
 
 	@Column(name = "\"IMAGE\"")
 	private String image;
